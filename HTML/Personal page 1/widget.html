@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Widget</title>
+  <link rel="icon" href="interactive_logo.png" type="image/x-icon">
+
+  <!-- handwriting font rel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Zeyada&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column; /* Change to column layout */
+      align-items: center; /* Center items horizontally */
+      justify-content: center; /* Center items vertically */
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .widget {
+      text-align: center;
+    }
+
+    .segment {
+      width: 40px;
+      height: 80px;
+      background-color: black;
+      border: 2px solid yellow;
+      margin: 2px;
+      display: inline-block;
+      position: relative;
+    }
+
+
+    .segment.on {
+      background-color: yellow;
+    }
+
+    .segment.a {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .segment.b {
+      top: 10px;
+      right: 0;
+    }
+
+    /* ... (similarly define segments c to g) */
+
+    .segment.dot {
+      bottom: 0;
+      left: 30%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background-color: yellow;
+      border-radius: 50%;
+    }
+
+    .text {
+      text-align: center;
+      font-family: 'Sacramento', cursive, Arial, Helvetica, sans-serif;
+      margin-top: 20px; /* Adjust the margin as needed */
+      margin-left: 20px;
+      color: transparent; /* Hide the original text color */
+      opacity: 40%;
+      background: linear-gradient(to bottom, yellow, #000000); /* Add a subtle yellow gradient */
+      -webkit-background-clip: text; /* Clip the gradient to the text */
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow to the text */
+      animation: shiningText 2s infinite alternate; /* Apply the shining animation */
+    }
+
+    @keyframes shiningText {
+      from {
+        opacity: 0.2; /* Starting opacity */
+      }
+      to {
+        opacity: 0.8; /* Ending opacity */
+      }
+    }
+
+    @media (max-width: 767px) { /* mobile */
+      .text {
+        font-size: 1rem; /* Adjust the font size as needed */
+      }
+    }
+
+    @media (min-width: 768px) { /* desktop */
+      .text {
+        font-size: 2rem; /* Adjust the font size as needed */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="widget">
+      <div class="segment a"></div>
+      <div class="segment b"></div>
+      <!-- ... (define segments c to g) -->
+      <div class="segment dot"></div>
+    </div>
+
+    <div class="text">
+      <h1>Seven Segment</h1>
+    </div>
+  </div>
+
+  <script>
+    const segments = document.querySelectorAll('.segment');
+
+    function toggleSegment(segment) {
+      segment.classList.toggle('on');
+    }
+
+    segments.forEach(segment => {
+      segment.addEventListener('click', () => {
+        toggleSegment(segment);
+      });
+    });
+  </script>
+</body>
+</html>
